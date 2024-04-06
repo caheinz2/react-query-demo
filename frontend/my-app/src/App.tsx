@@ -1,23 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { HomeScreen } from "./screens/Home";
+import { ProfileScreen } from "./screens/Profile";
+import { ProductScreen } from "./screens/Product";
 
 function App() {
+  const [showProfile, setShowProfile] = useState(false);
+  const [showProducts, setShowProducts] = useState(false);
+  const showHome = !showProfile && !showProducts;
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {showProfile && (
+          <ProfileScreen setShowProfile={setShowProfile}></ProfileScreen>
+        )}
+        {showProducts && (
+          <ProductScreen setShowProducts={setShowProducts}></ProductScreen>
+        )}
+        {showHome && (
+          <HomeScreen
+            setShowProfile={setShowProfile}
+            setShowProducts={setShowProducts}
+          ></HomeScreen>
+        )}
       </header>
     </div>
   );

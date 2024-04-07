@@ -1,18 +1,7 @@
-import { Routes } from "../types/Routes";
-
-type Props = {
-  setActiveRoute: (newVal: Routes) => void;
-};
-export function ProfileScreen(_props: Props) {
+export function ProfileScreen() {
   return (
     <>
-      <div>Profile Screen</div>
-      <button
-        className="App-button"
-        onClick={() => _props.setActiveRoute(Routes.HOME)}
-      >
-        Back
-      </button>
+      <h1>Profile Screen</h1>
     </>
   );
 }

@@ -11,16 +11,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {activeRoute === Routes.PROFILE && (
-          <ProfileScreen setActiveRoute={setActiveRoute}></ProfileScreen>
-        )}
-        {activeRoute === Routes.PRODUCT && (
-          <ProductScreen setActiveRoute={setActiveRoute}></ProductScreen>
-        )}
+        <button
+          className="App-button"
+          onClick={() => setActiveRoute(Routes.HOME)}
+        >
+          To Home Screen
+        </button>
+      </header>
+      <div className="App-body">
+        {activeRoute === Routes.PROFILE && <ProfileScreen></ProfileScreen>}
+        {activeRoute === Routes.PRODUCT && <ProductScreen></ProductScreen>}
         {activeRoute === Routes.HOME && (
           <HomeScreen setActiveRoute={setActiveRoute}></HomeScreen>
         )}
-      </header>
+      </div>
     </div>
   );
 }

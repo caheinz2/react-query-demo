@@ -1,5 +1,7 @@
+import { Routes } from "../types/Routes";
+
 type Props = {
-  setShowProducts: (newVal: boolean) => void;
+  setActiveRoute: (newVal: Routes) => void;
 };
 export function ProductScreen(_props: Props) {
   return (
@@ -7,7 +9,7 @@ export function ProductScreen(_props: Props) {
       <div>Product Screen</div>
       <button
         className="App-button"
-        onClick={() => _props.setShowProducts(false)}
+        onClick={() => _props.setActiveRoute(Routes.HOME)}
       >
         Back
       </button>

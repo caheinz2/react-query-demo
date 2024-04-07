@@ -1,8 +1,8 @@
 import React from "react";
+import { Routes } from "../types/Routes";
 
 type Props = {
-  setShowProfile: (newVal: boolean) => void;
-  setShowProducts: (newVal: boolean) => void;
+  setActiveRoute: (newVal: Routes) => void;
 };
 export function HomeScreen(_props: Props) {
   return (
@@ -11,7 +11,7 @@ export function HomeScreen(_props: Props) {
         <button
           className="App-button"
           onClick={() => {
-            _props.setShowProfile(true);
+            _props.setActiveRoute(Routes.PROFILE);
           }}
         >
           View Profile
@@ -20,7 +20,7 @@ export function HomeScreen(_props: Props) {
       <div className="App-section">
         <button
           className="App-button"
-          onClick={() => _props.setShowProducts(true)}
+          onClick={() => _props.setActiveRoute(Routes.PRODUCT)}
         >
           View Products
         </button>

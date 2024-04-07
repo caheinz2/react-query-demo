@@ -3,26 +3,22 @@ import "./App.css";
 import { HomeScreen } from "./screens/Home";
 import { ProfileScreen } from "./screens/Profile";
 import { ProductScreen } from "./screens/Product";
+import { Routes } from "./types/Routes";
 
 function App() {
-  const [showProfile, setShowProfile] = useState(false);
-  const [showProducts, setShowProducts] = useState(false);
-  const showHome = !showProfile && !showProducts;
+  const [activeRoute, setActiveRoute] = useState(Routes.HOME);
 
   return (
     <div className="App">
       <header className="App-header">
-        {showProfile && (
-          <ProfileScreen setShowProfile={setShowProfile}></ProfileScreen>
+        {activeRoute === Routes.PROFILE && (
+          <ProfileScreen setActiveRoute={setActiveRoute}></ProfileScreen>
         )}
-        {showProducts && (
-          <ProductScreen setShowProducts={setShowProducts}></ProductScreen>
+        {activeRoute === Routes.PRODUCT && (
+          <ProductScreen setActiveRoute={setActiveRoute}></ProductScreen>
         )}
-        {showHome && (
-          <HomeScreen
-            setShowProfile={setShowProfile}
-            setShowProducts={setShowProducts}
-          ></HomeScreen>
+        {activeRoute === Routes.HOME && (
+          <HomeScreen setActiveRoute={setActiveRoute}></HomeScreen>
         )}
       </header>
     </div>

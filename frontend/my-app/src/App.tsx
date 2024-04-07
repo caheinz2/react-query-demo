@@ -3,7 +3,7 @@ import "./App.css";
 import { HomeScreen } from "./screens/Home";
 import { ProfileScreen } from "./screens/Profile";
 import { ProductScreen } from "./screens/Product";
-import { Routes } from "./types/Routes";
+import { Routes } from "./types/routes";
 
 function App() {
   const [activeRoute, setActiveRoute] = useState(Routes.HOME);

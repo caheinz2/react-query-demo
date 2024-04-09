@@ -27,5 +27,16 @@
 
 .App-section {
   flex: 1;
-  border: medium solid #ff0100;
+  border: medium solid red;
+}
+
+.Card-container {
+  border: medium solid blue;
+  width: 100px;
+}
+
+.Card-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

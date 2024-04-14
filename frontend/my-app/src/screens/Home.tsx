@@ -2,7 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Routes } from "../types/routes";
 import { getAllProductPreviews, getProfileById } from "../data/api";
 import { ProductPreviewDTO } from "../types/api";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  ListGroup,
+  Modal,
+  Row,
+} from "react-bootstrap";
+import { ProductModal } from "../components/ProductModal";
 
 type Props = {
   setActiveRoute: (newVal: Routes) => void;
@@ -11,6 +20,7 @@ export function HomeScreen(_props: Props) {
   const [firstName, setFirstName] = useState("");
   const [products, setProducts] = useState<ProductPreviewDTO[]>();
   const [isLoading, setIsLoading] = useState(true);
+  const [clickedProductId, setClickedProductId] = useState<number>();
 
   useEffect(() => {
     let profileLoading = true;
@@ -37,9 +47,26 @@ export function HomeScreen(_props: Props) {
           <Card.Body>
             <Card.Title>{product.productTitle}</Card.Title>
             <Card.Img src={product.thumbnailUri}></Card.Img>
+            <Button
+              size="sm"
+              onClick={() => {
+                setClickedProductId(product.productId);
+              }}
+            >
+              Details
+            </Button>
           </Card.Body>
         </Card>
       </Col>
+    );
+  }
+
+  function renderProductModal(productId: number) {
+    return (
+      <ProductModal
+        productId={productId}
+        onClose={() => setClickedProductId(0)}
+      ></ProductModal>
     );
   }
 
@@ -51,9 +78,9 @@ export function HomeScreen(_props: Props) {
         <>
           <Container>
             <Row className="App-section">
-              <Col xs={12}>
+              <Row>
                 <h1>Welcome back, {firstName}</h1>
-              </Col>
+              </Row>
               <Col>
                 <Button
                   variant="dark"
@@ -66,11 +93,14 @@ export function HomeScreen(_props: Props) {
               </Col>
             </Row>
             <Row>
-              <Col xs={12}>
+              <Row>
                 <h2>Look at these products:</h2>
-              </Col>
-              <ul className="Card-list">{products?.map(renderProductCard)}</ul>
+              </Row>
+              <Row className="Card-list">
+                {products?.map(renderProductCard)}
+              </Row>
             </Row>
+            {clickedProductId ? renderProductModal(clickedProductId) : null}
           </Container>
         </>
       )}

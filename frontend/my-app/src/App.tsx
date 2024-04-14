@@ -4,6 +4,7 @@ import { HomeScreen } from "./screens/Home";
 import { ProfileScreen } from "./screens/Profile";
 import { ProductScreen } from "./screens/Product";
 import { Routes } from "./types/routes";
+import { Button } from "react-bootstrap";
 
 function App() {
   const [activeRoute, setActiveRoute] = useState(Routes.HOME);
@@ -11,12 +12,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button
-          className="App-button"
-          onClick={() => setActiveRoute(Routes.HOME)}
-        >
+        <Button variant="secondary" onClick={() => setActiveRoute(Routes.HOME)}>
           To Home Screen
-        </button>
+        </Button>
       </header>
       <div className="App-body">
         {activeRoute === Routes.PROFILE && <ProfileScreen></ProfileScreen>}

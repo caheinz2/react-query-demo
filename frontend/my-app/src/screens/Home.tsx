@@ -3,6 +3,7 @@ import { Routes } from "../types/routes";
 import { getAllProductPreviews, getProfileById } from "../data/api";
 import { ProductPreviewDTO } from "../types/api";
 import { Card } from "../components/Card";
+import { Button } from "react-bootstrap";
 
 type Props = {
   setActiveRoute: (newVal: Routes) => void;
@@ -47,26 +48,24 @@ export function HomeScreen(_props: Props) {
         <>
           <div className="App-section">
             <h1>Welcome back, {firstName}</h1>
-            <button
-              className="App-button"
+            <Button
+              variant="dark"
               onClick={() => {
                 _props.setActiveRoute(Routes.PROFILE);
               }}
             >
               View Profile
-            </button>
+            </Button>
           </div>
           <div className="App-section">
             <h2>Look at these products:</h2>
-            <ul className="Card-list">
-              {products?.map(renderProductCard)}
-            </ul>
-            <button
-              className="App-button"
+            <ul className="Card-list">{products?.map(renderProductCard)}</ul>
+            <Button
+              variant="dark"
               onClick={() => _props.setActiveRoute(Routes.PRODUCT)}
             >
               View Products
-            </button>
+            </Button>
           </div>
         </>
       )}

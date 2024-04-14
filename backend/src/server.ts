@@ -8,6 +8,11 @@ app.use(cors());
 
 const port = 3001;
 
+const delayMs = 1000;
+app.use(function (_req, _res, next) {
+  setTimeout(next, delayMs);
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, this is Express + TypeScript");
 });

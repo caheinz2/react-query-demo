@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes } from "../types/routes";
 import { getAllProductPreviews, getProfileById } from "../data/api";
 import { ProductPreviewDTO } from "../types/api";
-import { Card } from "../components/Card";
-import { Button } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 type Props = {
   setActiveRoute: (newVal: Routes) => void;
@@ -32,11 +31,15 @@ export function HomeScreen(_props: Props) {
 
   function renderProductCard(product: ProductPreviewDTO) {
     return (
-      <Card
-        title={product.productTitle}
-        thumbnailUri={product.thumbnailUri}
-        key={product.productId}
-      ></Card>
+      <Col xs={2}>
+        <Card key={product.productId} bg="secondary">
+          <Card.Header>{product.productId}</Card.Header>
+          <Card.Body>
+            <Card.Title>{product.productTitle}</Card.Title>
+            <Card.Img src={product.thumbnailUri}></Card.Img>
+          </Card.Body>
+        </Card>
+      </Col>
     );
   }
 
@@ -46,27 +49,29 @@ export function HomeScreen(_props: Props) {
         <div>Loading...</div>
       ) : (
         <>
-          <div className="App-section">
-            <h1>Welcome back, {firstName}</h1>
-            <Button
-              variant="dark"
-              onClick={() => {
-                _props.setActiveRoute(Routes.PROFILE);
-              }}
-            >
-              View Profile
-            </Button>
-          </div>
-          <div className="App-section">
-            <h2>Look at these products:</h2>
-            <ul className="Card-list">{products?.map(renderProductCard)}</ul>
-            <Button
-              variant="dark"
-              onClick={() => _props.setActiveRoute(Routes.PRODUCT)}
-            >
-              View Products
-            </Button>
-          </div>
+          <Container>
+            <Row className="App-section">
+              <Col xs={12}>
+                <h1>Welcome back, {firstName}</h1>
+              </Col>
+              <Col>
+                <Button
+                  variant="dark"
+                  onClick={() => {
+                    _props.setActiveRoute(Routes.PROFILE);
+                  }}
+                >
+                  View Profile
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <h2>Look at these products:</h2>
+              </Col>
+              <ul className="Card-list">{products?.map(renderProductCard)}</ul>
+            </Row>
+          </Container>
         </>
       )}
     </>

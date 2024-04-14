@@ -23,8 +23,8 @@
 }
 
 .App-section {
-  flex: 1;
-  border: medium solid red;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .Card-container {
